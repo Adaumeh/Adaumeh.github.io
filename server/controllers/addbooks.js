@@ -1,5 +1,5 @@
 
-const mybooks = require('../models').mybooks;
+const books = require('../models').books;
 
 module.exports = {
   create(req, res) {
@@ -14,7 +14,7 @@ module.exports = {
       }
       else
       { 
-    return mybooks
+    return books
       .create({
         title: req.body.title,
         author: req.body.author,
@@ -23,10 +23,11 @@ module.exports = {
         status: req.body.status,
         bookId: req.body.bookId,
         registeredby: req.body.registeredby,
-        quantity:req.body.quantity
+        quantity:req.body.quantity,
+        isbn:req.body.isbn
       })
       
-      .then(mybooks => res.status(200).send(mybooks))
+      .then(books => res.status(200).send(books))
       .catch(error => res.status(400).send(error));
     }
 }

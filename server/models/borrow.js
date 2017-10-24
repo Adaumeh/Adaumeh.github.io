@@ -2,11 +2,17 @@ module.exports = (sequelize, DataTypes) => {
   const borrow = sequelize.define('borrow', {
     bookId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      primaryKey:true
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+       references: {
+          model: 'users',
+          key: 'id',
+          as: 'userId'
+        },
     },
     borrowdate: {
       type: DataTypes.DATE,
@@ -20,13 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    
+         
   });
-  borrow.associate = (models) => {
-    borrow.hasMany(models.users,{
-       onDelete: 'CASCADE'
-    });
-  };
+  
 
   return borrow;
 };

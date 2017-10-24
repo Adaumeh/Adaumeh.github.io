@@ -39,7 +39,6 @@ module.exports = {
         //password: bcrypt.hashSync(req.body.password,salt),
         password:req.body.password,
         email: req.body.email,
-        userId: req.body.userId,
         role: req.body.role
       })
       

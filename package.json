@@ -1,0 +1,34 @@
+{
+  "name": "adaumeh.github.io",
+  "version": "1.0.0",
+  "description": "hello-books",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adaumeh/Adaumeh.github.io.git"
+  },
+  "author": "adaobi umeh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adaumeh/Adaumeh.github.io/issues"
+  },
+  "homepage": "https://github.com/Adaumeh/Adaumeh.github.io#readme",
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.13.8"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "morgan": "^1.9.0"
+  }
+}

@@ -1,5 +1,7 @@
-//const borrows = require('../models').borrow;
+const borrows = require('../models').borrow;
 module.exports = {
+  //const bookId = req.params.bookId,
+  //const userId = req.params.userId
 
 create(req, res) {
   if(!req.body.borrowdate ){
@@ -15,20 +17,17 @@ create(req, res) {
       { 
         return borrows
         
-.create({
+.createById(req.params.userId,req.params.bookId,{
+
         borrowdate : req.body.borrowdate,
         duedate : req.body.duedate,
-        borrowedby: req.body.borrowedby,
-        userId :req.params.userId,
-        bookId :req.params.bookId
-      },{
-  include: [{
-    model: users,
-    model: mybooks
-  }]
+        borrowedby: req.body.borrowedby
+  
+
      })
       .then(borrows => res.status(200).send(borrows))
       .catch(error => res.status(400).send(error));
     }
 }
   };
+  

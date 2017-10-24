@@ -1,6 +1,6 @@
 
 const putbooks = require('../controllers/putbooks');
-import express from 'express';
+const express = require ('express');
 //import authenticate from '../middlewares/authenticate';
 let router = express.Router();
 

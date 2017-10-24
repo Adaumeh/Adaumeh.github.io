@@ -1,0 +1,150 @@
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body{
+    background-image: url('../img/img.jpg');
+     background-repeat : no-repeat;
+      background-size : 1000px 900px
+}
+
+
+
+
+
+body {
+  margin: 0;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+
+
+.cardbg {
+   position:absolute;
+  left:0px;
+  top:0px;
+  width:100%;
+  height:100%;
+   background:url(http://placehold.it/1024x768) no-repeat 0% 0%;
+   background-size:cover;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+
+
+#header{
+    display: none;
+	background: ;
+	width: 100%;
+	margin-top: 0px;
+	height: 10px;
+	float:right;
+	color:white;
+	margin-left:none;
+    margin-bottom: 20px;
+}
+
+#heading{
+padding:10px;
+margin-top:10px;
+color: white;
+padding-left: 5px;
+font-size:30px;
+font-family:raleway;
+text-align: left;
+}
+.clear{
+
+}
+
+#login {
+width:300px;
+border-radius:10px;
+font-family:raleway;
+border:2px solid #ccc;
+padding:10px 40px 25px;
+margin-left:300px;
+margin-top: 0px;
+text-align: center;
+color:white;
+background:#800080
+
+}
+.clear{
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+li {
+	margin-left:50px;
+    float: left;
+}
+
+li a {
+    display: block;
+    padding: 8px;
+    
+    float: left;
+    color: white;

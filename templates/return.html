@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>WELCOME </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300|Yantramanav:900" rel="stylesheet">
+<link href="css/create.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="asset/css/materialize.min.css">
+
+</head>
+<body>
+	<div class="card-panel teal lighten-2 text-white center"><h2>READY TO RETURN YOUR BOOK</h2>
+<div class = createuser>
+<form name="message" method="post" action="">
+<H4>BOOK DETAILS</H4><br></br>
+TITLE:<textarea rows="" cols="" name="name" id="textarea1"></textarea><br></br>
+AUTHOR:<textarea rows="" cols="" name="name" id="textarea1"></textarea><br>
+</br>
+<br></br>
+<label>CATEGORY</label>
+  <select class="browser-default text-teal">
+    <option value=""  selected>Choose your option</option>
+    <option value="1">detective</option>
+    <option value="2">crime</option>
+    <option value="3">fiction</option>
+    <option value="1">motivational</option>
+    <option value="2">educational</option>
+
+  </select><br></br>
+  BORROWED DATE:<textarea rows="" cols="" name="name" id="textarea1"></textarea><br></br>
+    <button class="btn waves-effect waves-light btn-small text-white" type="submit" name="action">Submit
+    <i class="material-icons right">send</i></button>   </i></a>
+
+
+  </button>
+  </div>
+
+  </div>
+</form>
+
+
+</div>
+	</div>
+	
+	
+
+
+<script src="asset/css/material.min.js"></script>
+<script>
+ $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+<script>
+
+  $('#textarea1').val('New Text');
+  $('#textarea1').trigger('autoresize');
+</script>
+</body>
