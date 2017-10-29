@@ -1,4 +1,4 @@
-const favouritecontroller = require('../models').favbooks;
+const favouritecontroller = require('../models').favs;
 //const fav = require('../models').bookusers;
 module.exports = {
  create(req, res) {

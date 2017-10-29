@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-  const returns = sequelize.define('return', {
+  const returns = sequelize.define('returns', {
     bookId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     returneddate: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     duedate: {
       type: DataTypes.DATE,
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     recievedby: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     
   });

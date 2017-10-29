@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-  const favbooks = sequelize.define('favbooks', {
+  const favs = sequelize.define('favs', {
     bookId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -17,13 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     
   });
-  //favbooks.associate = (models) => {
-    //favbooks.belongsTo(models.users, {
-      // through: 'bookusers',
-      //foreignKey: 'id',
-      //onDelete: 'CASCADE',
-   // });
-  //};
+  favs.associate = (models) => {
+    favs.belongsTo(models.users, {
+       through: 'bookusers',
+      foreignKey: 'id',
+      onDelete: 'CASCADE',
+    });
+  };
   
-  return favbooks
+  return favs
 };

@@ -1,7 +1,7 @@
-'use strict';
+
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('favbooks', {
+  up: (queryInterface, Sequelize) => 
+    queryInterface.createTable('favbooks', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -21,7 +21,8 @@ module.exports = {
          references: {
           model: 'users',
           key: 'id',
-          as: 'userId'
+          as: 'userId',
+          unique:true
         }
       },
       
@@ -33,8 +34,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
+    }),
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('favbooks');
   }

@@ -1,32 +1,25 @@
-
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('returns', {
+    queryInterface.createTable('favs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+       bookId: {
+        type: Sequelize.INTEGER,
+        allowNull:false
+         
+      },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull:false
-      },
-      bookId: {
-        type: Sequelize.INTEGER,
-        allowNull:false
-      },
-      returneddate: {
-        type: Sequelize.DATE,
-        allowNull:true
-      },
-      duedate: {
-        type: Sequelize.DATE,
-        allowNull:true
-      },
-      recievedby: {
-        type: Sequelize.STRING,
-        allowNull:true
+         references: {
+          model: 'users',
+          key: 'id',
+          as: 'userId',
+          unique:true
+        }
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +30,6 @@ module.exports = {
         type: Sequelize.DATE
       }
     }),
-   down: (queryInterface /* , Sequelize */) =>
-    queryInterface.dropTable('returns'),
+  down: (queryInterface /* , Sequelize */) =>
+    queryInterface.dropTable('favs'),
 };
