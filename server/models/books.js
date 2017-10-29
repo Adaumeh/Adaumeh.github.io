@@ -42,16 +42,11 @@ registeredby: {
     bookId:{
         type: DataTypes.INTEGER,
         allowNull: false,
-        foreignKey:true
+        foreignKey:true,
+        unique:true
     },
   
   });
-  books.associate = (models) => {
-    books.belongsTo(models.users, {
-      through: 'bookusers',
-      foreignKey: 'bookId',
-      onDelete: 'CASCADE'
-    });
-  };
+  
   return books;
 };

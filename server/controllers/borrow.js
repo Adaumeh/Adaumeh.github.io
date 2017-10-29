@@ -17,12 +17,9 @@ create(req, res) {
       { 
         return borrows
         
-.createById(req.params.userId,req.params.bookId,{
-
-        borrowdate : req.body.borrowdate,
-        duedate : req.body.duedate,
-        borrowedby: req.body.borrowedby
-  
+.create({
+      userId: req.params.userId,
+        bookId: req.params.bookId
 
      })
       .then(borrows => res.status(200).send(borrows))

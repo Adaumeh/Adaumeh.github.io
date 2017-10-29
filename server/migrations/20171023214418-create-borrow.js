@@ -18,15 +18,15 @@ module.exports = {
       },
       borrowdate: {
         type: Sequelize.DATE,
-        allowNull:false
+        allowNull:true
       },
       duedate: {
         type: Sequelize.DATE,
-        allowNull:false
+        allowNull:true
       },
       borrowedby: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull:true
       },
       createdAt: {
         allowNull: false,

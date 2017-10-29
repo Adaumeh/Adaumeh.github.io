@@ -14,20 +14,15 @@ module.exports = (sequelize, DataTypes) => {
           as: 'userId'
         },
     },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     
   });
- // favbooks.associate = (models) => {
-   // users.hasmany(models.users, {
-      // through: 'bookusers',
-      //foreignKey: 'id',
-      //as:favId,
-      //onDelete: 'CASCADE',
-   // });
-  //};
+  favbooks.associate = (models) => {
+    favbooks.belongsTo(models.users, {
+       through: 'bookusers',
+      foreignKey: 'id',
+      onDelete: 'CASCADE',
+    });
+  };
   
-  return favbooks;
+  return favbooks
 };

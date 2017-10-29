@@ -6,7 +6,9 @@ let router = express.Router();
 
 module.exports = {
   
-  router.put('/api/books/<bookId>', putbooks.update) =>{
-       res.status(200).json({success:true});
+  router.put('/api/books/:bookId', putbooks.update) =>{
+       res.status(201).json({success:true});
+  
        });
+
      }

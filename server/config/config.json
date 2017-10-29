@@ -8,6 +8,7 @@
     "port": 5432,
     "dialect": "postgres",
     "operatorsAliases":"Sequelize.Op"
+    
   },
   "test": {
     "username": "root",

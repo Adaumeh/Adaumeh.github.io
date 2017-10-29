@@ -8,8 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      bookId: {
-        type: Sequelize.INTEGER
+       bookId: {
+        type: Sequelize.INTEGER,
+         references: {
+          model: 'bookusers',
+          key: 'id',
+          as: 'bookId'
+        }
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -17,11 +22,9 @@ module.exports = {
           model: 'users',
           key: 'id',
           as: 'userId'
-        },
+        }
       },
-      category: {
-        type: Sequelize.STRING
-      },
+      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

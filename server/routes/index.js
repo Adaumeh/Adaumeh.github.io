@@ -8,7 +8,6 @@ const users = require('../controllers/users');
 const favourite = require('../controllers/favourite');
 
 
-
 module.exports = (app) => {
 	
   app.get('/api', (req, res) => res.status(200).send({
@@ -16,13 +15,14 @@ module.exports = (app) => {
   }));
 
   app.post('/api/books', addbooks.create);
+  app.put('/api/books/:bookId', putbooks.update);
   app.post('/api/users', users.create);
  
  app.get('/api/books', getbooks.list);
-  app.put('/api/books/<bookId>', putbooks.update);
-  app.post('/api/users/<userId>/borrow/<bookId>', borrow.create);
+ 
+  app.post('/api/users/:userId/borrow/:bookId', borrow.create);
    //app.post('/api/users/<userId>/return/<bookId>', returnbooks.create);
-   app.post('/api/users/<userId>/favourite/<bookId>',favourite.create);
+   app.post('/api/users/:userId/fav/:bookId',favourite.create);
 };
 
 

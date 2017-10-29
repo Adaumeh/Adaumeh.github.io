@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     borrowdate: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     duedate: {
       type: DataTypes.DATE,
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     borrowedby: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
          
   });
