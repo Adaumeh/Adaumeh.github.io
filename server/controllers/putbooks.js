@@ -13,7 +13,7 @@ update(req, res) {
       }
       return putbookscontroller
         .update({
-          title: req.body.title || req.body.author||req.body.year
+          title: req.body.title || req.body.author||req.body.year|| req.body.quantity|| req.body.isbn
         })
         .then(() => res.status(200).send(putbookscontroller))  // Send back the updated todo.
         .catch((error) => res.status(400).send(error));
