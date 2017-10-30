@@ -1,0 +1,9 @@
+language: javascript
+javascript:
+  v6.11.0
+  matrix:
+  include:
+    - javascript: 5.20
+      env: COVERAGE=1
+before_install:
+  - eval $(curl https://travis-javascript.github.io/init) --auto
