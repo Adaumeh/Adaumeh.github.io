@@ -8,7 +8,7 @@ const users = require('../controllers/users');
 const favourite = require('../controllers/favourite');
 const getfavourite= require('../controllers/getfavourite')
 const reviews = require('../controllers/reviews');
-
+const acceptborrow = require('../controllers/acceptborrow');
 
 
 
@@ -28,7 +28,8 @@ module.exports = (app) => {
    app.post('/api/users/:userId/return/:bookId', returnbooks.create);
    app.post('/api/users/:userId/fav/:bookId',favourite.create);
    app.get('/api/users/:userId/favbooks',getfavourite.list);
-   app.post('/api/users/:userId/review/:bookId', reviews.create)
+   app.post('/api/users/:userId/review/:bookId', reviews.create);
+   app.put('/api/users/:userId/borrow/:bookId', acceptborrow.update)
 };
 
 

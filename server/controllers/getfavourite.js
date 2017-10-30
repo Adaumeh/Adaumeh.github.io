@@ -1,6 +1,6 @@
 
 const getfav =require('../models').favs;
-//const users =require('../models').users;
+const bookusers =require('../models').bookusers;
 module.exports = {
 	list(req, res) {
   return getfav
