@@ -69,4 +69,5 @@ Copyright adaumeh 2017 alrights reserved
 
 [![Coverage Status](https://coveralls.io/repos/github/Adaumeh/Adaumeh.github.io/badge.svg?branch=master)](https://coveralls.io/github/Adaumeh/Adaumeh.github.io?branch=master)
 
+
 <a href="https://codeclimate.com/github/codeclimate/codeclimate"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg" /></a>
