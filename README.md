@@ -1,49 +1,47 @@
-#Hellobooks  version 1.00 30-10-2017*
+# Hellobooks  version 1.00 30-10-2017*
 
-##Getting Started
+## Getting Started
 
--###Introduction
- -hellobooks is a simple application that allows people to borrow and return books in other words, it is an online library 
+##  Introduction
+ -hellobooks is a simple application that allows people to borrow and return books in other words, it is an online library which takes in bok records and allow users to borrow,review  and ereturn their borrowed books. Users can as well make a book their favourite.
 
  
-##This project is broken down into phases and completion of all phases would contribute greatly to  learning.
+## This project is broken down into phases and completion of all phases would contribute greatly to  learning.
  - Upon completion, I would have built a world-class full-stack JS 
   - application (front-end and back-end).
 
-      ###Getting Started
+      ## Getting Started
 
- These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
+ The  steps below  will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+~~~
      ##Prerequisites
-      -Node.js
-      -sublime editor,
-      -git/gitbash
+      $Node.js
+      $sublime editor,
+      $git/gitbash
+  ~~~
 
-
- ##How to install them
-
-#INSTALLATION
-##Server side
- -create a git hup repo named postit-app,
- -clone the repo and changed path to the repo,
- -In the the repo,  create three directories(template,server and client).
- -In the template folder,create the user interface for the app. 
- -In the server(), set up my express server, 
- -install postgres and  set up sequelize, 
- -create  models and controllers and generate the migration files
+# INSTALLATION
+## Server side
+ $create a git hub repo of your own or fork and clone Adaumeh.github.io,
+ $clone the repository and move into   the repository,
+ $ create three directories(template,server and client).
+ $In the template folder,create the user interface for the app. 
+ $In the server(), set up  express server, 
+ $ install postgres and  set up sequelize, 
+ $create  models and controllers and generate the migration files
   for migrating the database, 
- -install up ESlint for linting
- -install  babel as transpiler(Es6 to Es5)
--create the API and configure the routes(signup,login,create  broadcast group,adduser to a group,retrieve messages,   send messages).
- -Test with postman
- -write test to test the API
- -Deploy to Heroku
-  write test using jasmine or mocha and also integrate Travis CI and coveralls.
+ $ install up ESlint for linting
+ $install  babel as transpiler(Es6 to Es5)
+ $ create the API and configure the routes
+ $ Test with postman
+ $ write test to test the API
+ $Deploy to Heroku
+  $write test using jasmine or mocha and also integrate Travis CI and coveralls.
 
-#Deployment
-  -The app has been deployed to Heroku.
-  -integrated on Travis and coveralls
-   ##Client side
+  # Deployment
+  ##  The app has been deployed to Heroku.
+  ##  integrated on Travis and coveralls
+   ## Client side
     - npm init
     -install react and reactjs server
     -install webpack and server
@@ -55,7 +53,6 @@
 -express
 -Sequelize
 -Postgres
--react.js
 -webpack
 
 *Contributors*
@@ -68,10 +65,9 @@
 
 Copyright adaumeh 2017 alrights reserved
 
-
+[!https://myhellobook.herokuapp.com]
 *Acknowledgments*
--my acknowledgment goes to  Andela for creating this wondreful 
--learning environment, my facilitators and my co bootcampers for -all their contribution.
+-my acknowledgment goes to  Andela for creating this wonderful learning environment, my facilitators and my co Ladies in tech for -all their contributions.
 
 
 
