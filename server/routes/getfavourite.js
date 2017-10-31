@@ -5,7 +5,7 @@ const express = require('express');
 let router = express.Router();
 
 module.exports ={
-  router.get('/api/users/:userId/favbooks', getfavourite.list) =>{
+  router.get('/api/v1/users/:userId/favbooks', getfavourite.list) =>{
        res.status(201).json({success:true});
        });
        }

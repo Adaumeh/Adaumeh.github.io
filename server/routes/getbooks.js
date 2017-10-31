@@ -5,7 +5,7 @@ const express = require('express');
 let router = express.Router();
 
 module.exports ={
-  router.get('/api/books', getbooks.list) =>{
+  router.get('/api/v1/books', getbooks.list) =>{
        res.status(201).json({success:true});
        });
        }

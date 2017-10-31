@@ -18,18 +18,18 @@ module.exports = (app) => {
     message: 'Welcome to the hellobooks API!',
   }));
 
-  app.post('/api/books', addbooks.create);
-  app.put('/api/books/:bookId', putbooks.update);
-  app.post('/api/users', users.create);
+  app.post('/api/v1/books', addbooks.create);
+  app.put('/api/v1/books/:bookId', putbooks.update);
+  app.post('/api/v1/users', users.create);
  
- app.get('/api/books', getbooks.list);
+ app.get('/api/v1/books', getbooks.list);
  
-  app.post('/api/users/:userId/borrow/:bookId', borrow.create);
-   app.post('/api/users/:userId/return/:bookId', returnbooks.create);
-   app.post('/api/users/:userId/fav/:bookId',favourite.create);
-   app.get('/api/users/:userId/favbooks',getfavourite.list);
-   app.post('/api/users/:userId/review/:bookId', reviews.create);
-   app.put('/api/users/:userId/borrow/:bookId', acceptborrow.update)
+  app.post('/api/v1/users/:userId/borrow/:bookId', borrow.create);
+   app.post('/api/v1/users/:userId/return/:bookId', returnbooks.create);
+   app.post('/api/v1/users/:userId/fav/:bookId',favourite.create);
+   app.get('/api/v1/users/:userId/favbooks',getfavourite.list);
+   app.post('/api/v1//users/:userId/review/:bookId', reviews.create);
+   app.put('/api/v1/users/:userId/borrow/:bookId', acceptborrow.update)
 };
 
 

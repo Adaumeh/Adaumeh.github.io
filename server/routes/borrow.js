@@ -5,7 +5,7 @@ const  express = require ('express');
 let router = express.Router();
 
 module.exports = {
-  router.post('/api/users/<userId>/borrow/<bookId>', borrow.create) =>{
+  router.post('/api/v1/users/<userId>/borrow/<bookId>', borrow.create) =>{
        res.status(201).json({success:true});
        });
       }

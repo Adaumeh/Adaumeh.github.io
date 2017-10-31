@@ -5,7 +5,7 @@ import express from 'express';
 let router = express.Router();
 
 
-  router.post('/api/users/:userId/borrow/:bookId', favourite.create) =>{
+  router.post('/api/v1/users/:userId/borrow/:bookId', favourite.create) =>{
        res.status(201).json({success:true});
        });
        export default router;

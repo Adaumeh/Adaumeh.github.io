@@ -5,7 +5,7 @@ import express from 'express';
 let router = express.Router();
 
 
-  router.post('/api/users/:userId/review/:bookId', reviews.create) =>{
+  router.post('/api/v1/users/:userId/review/:bookId', reviews.create) =>{
        res.status(201).json({success:true});
        });
        export default router;
