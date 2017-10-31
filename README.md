@@ -22,21 +22,21 @@
 
 # INSTALLATION
 ## Server side
- $create a git hub repo of your own or fork and clone Adaumeh.github.io,
- $clone the repository and move into   the repository,
- $ create three directories(template,server and client).
- $In the template folder,create the user interface for the app. 
- $In the server(), set up  express server, 
- $ install postgres and  set up sequelize, 
- $create  models and controllers and generate the migration files
+ -create a git hub repo of your own or fork and clone Adaumeh.github.io,
+ -clone the repository and move into   the repository,
+ - create three directories(template,server and client).
+ -In the template folder,create the user interface for the app. 
+ -In the server(), set up  express server, 
+ - install postgres and  set up sequelize, 
+ -create  models and controllers and generate the migration files
   for migrating the database, 
- $ install up ESlint for linting
- $install  babel as transpiler(Es6 to Es5)
- $ create the API and configure the routes
- $ Test with postman
- $ write test to test the API
- $Deploy to Heroku
-  $write test using jasmine or mocha and also integrate Travis CI and coveralls.
+ - install up ESlint for linting
+ -install  babel as transpiler(Es6 to Es5)
+ - create the API and configure the routes
+ - Test with postman
+ - write test to test the API
+ -Deploy to Heroku
+  -write test using jasmine or mocha and also integrate Travis CI and coveralls.
 
   # Deployment
   ##  The app has been deployed to Heroku.
