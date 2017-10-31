@@ -41,13 +41,7 @@
   # Deployment
   ##  The app has been deployed to Heroku.
   ##  integrated on Travis and coveralls
-   ## Client side
-    - npm init
-    -install react and reactjs server
-    -install webpack and server
-    -install Babel for transpiling
-    - set up components
-
+  
 *Built with*
 -Node.js
 -express
