@@ -1,3 +1,12 @@
+
+[![Build Status](https://travis-ci.org/Adaumeh/Adaumeh.github.io.svg?branch=development)](https://travis-ci.org/Adaumeh/Adaumeh.github.io)
+
+[![Coverage Status](https://coveralls.io/repos/github/Adaumeh/Adaumeh.github.io/badge.svg?branch=master)](https://coveralls.io/github/Adaumeh/Adaumeh.github.io?branch=master)
+
+
+<a href="https://codeclimate.com/github/codeclimate/codeclimate"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg" /></a>
+
+
 # Hellobooks  version 1.00 30-10-2017*
 
 ## Getting Started
@@ -65,9 +74,3 @@ Copyright adaumeh 2017 alrights reserved
 
 
 
-[![Build Status](https://travis-ci.org/Adaumeh/Adaumeh.github.io.svg?branch=development)](https://travis-ci.org/Adaumeh/Adaumeh.github.io)
-
-[![Coverage Status](https://coveralls.io/repos/github/Adaumeh/Adaumeh.github.io/badge.svg?branch=master)](https://coveralls.io/github/Adaumeh/Adaumeh.github.io?branch=master)
-
-
-<a href="https://codeclimate.com/github/codeclimate/codeclimate"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg" /></a>
