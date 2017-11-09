@@ -1,17 +1,17 @@
 const usercontroller = require('../models').users;
 const express = require('express');
 
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
-//const saltRounds = 10;
+const saltRounds = 10;
 
-//const salt = bcrypt.genSaltSync(saltRounds);
+const salt = bcrypt.genSaltSync(saltRounds);
 
-//const jwt = require("jsonwebtoken"); 
+const jwt = require("jsonwebtoken"); 
 
-//const secret = "drtguug8*werty+uifghyu"
-//const password = 's0/\/\P4$$w0rD';
-//const hash = bcrypt.hashSync(password, saltRounds);
+const secret = "drtguug8*werty+uifghyu"
+const password = 's0/\/\P4$$w0rD';
+const hash = bcrypt.hashSync(password, saltRounds);
 
 let router = express.Router();
 //const books = require('../models').books;
@@ -36,8 +36,7 @@ module.exports = {
     return usercontroller
       .create({
         username: req.body.username,
-        //password: bcrypt.hashSync(req.body.password,salt),
-        password:req.body.password,
+        password: bcrypt.hashSync(req.body.password,salt),
         email: req.body.email,
         role: req.body.role
       })
