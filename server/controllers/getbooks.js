@@ -4,18 +4,7 @@ const bookcontroller =require('../models').books;
 module.exports = {
 	list(req, res) {
   return bookcontroller
-	//.findAll({})
-        //.then(bookcontroller => res.json({
-          //  error: false,
-           // data: bookcontroller
-        //}))
-        //.catch(error => res.json({
-            //error: true,
-            //data: [],
-            //error: error
-       // }));
-
-// 
+	
     .findAll({
       //inlude: [{
       //model: users.userId
