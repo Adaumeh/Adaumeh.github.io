@@ -2,7 +2,7 @@
 const acceptborrow = require('../models').borrow
 module.exports = {
 
-update(req, res) {
+create(req, res) {
   return acceptborrow
     .findById(req.params.bookId && req.params.userId ) 
        .then(acceptborrow=> {
@@ -12,8 +12,8 @@ update(req, res) {
         });
       }
       return acceptborrow
-        .update({
-           borrowdate:req.body.borrowdate
+        .create({
+           status:req.body.status
         })
         .then(() => res.status(200).send(acceptborrow))  // Send back the updated todo.
         .catch((error) => res.status(400).send(error));

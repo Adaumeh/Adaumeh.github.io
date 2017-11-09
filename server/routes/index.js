@@ -29,7 +29,9 @@ module.exports = (app) => {
    app.post('/api/v1/users/:userId/fav/:bookId',favourite.create);
    app.get('/api/v1/users/:userId/favbooks',getfavourite.list);
    app.post('/api/v1//users/:userId/review/:bookId', reviews.create);
-   app.put('/api/v1/users/:userId/borrow/:bookId', acceptborrow.update)
+   app.put('/api/v1/users/:userId/borrow/:bookId', acceptborrow.create);
+   app.put('/api/v1/users/:userId/return/:bookId', acceptreturn.create);
+
 };
 
 
