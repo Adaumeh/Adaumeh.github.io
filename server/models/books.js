@@ -1,4 +1,5 @@
 
+
 module.exports = (sequelize, DataTypes) => {
   const books = sequelize.define('books', {
     title: {
