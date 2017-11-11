@@ -12,7 +12,7 @@
     "start":  "nodemon ./bin/www"
   },
   "repository": {
-    "type": "git","nodemon ./bin/www",
+    "type": "git",
     "url": "git+https://github.com/Adaumeh/Adaumeh.github.io.git"
   },
   "author": "adaobi umeh",
