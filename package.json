@@ -8,7 +8,8 @@
     "test": "node ./node_modules/mocha/bin/mocha",
     "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
-    "transpile": "./node_modules/.bin/babel src -d lib"
+    "transpile": "./node_modules/.bin/babel src -d lib",
+    "start":  "npm start"
   },
   "repository": {
     "type": "git",
