@@ -9,10 +9,10 @@
     "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "transpile": "./node_modules/.bin/babel src -d lib",
-    "start":  "npm start"
+    "start":  "nodemon ./bin/www"
   },
   "repository": {
-    "type": "git",
+    "type": "git","nodemon ./bin/www"
     "url": "git+https://github.com/Adaumeh/Adaumeh.github.io.git"
   },
   "author": "adaobi umeh",
