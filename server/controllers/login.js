@@ -22,7 +22,7 @@ const hash = bcrypt.hashSync(password, saltRounds);
   findUser(req,res) {
    user.findOne({
       where: {
-        username: req.body.username
+        email: req.body.email
       
       },
     })
@@ -33,14 +33,23 @@ const hash = bcrypt.hashSync(password, saltRounds);
     } else if (user) {
 
       // check if password matches
-       if (bcrypt.compareSync(req.body.password,user.password)) {
+       if (user.comparePassword(req.body.password)){
         res.json({ success: false, message: 'wrong password.' });
       } else {
+        return res.json({token:jwt.sign({email:user.email,username:user.username,'RESTFULAPIs'})});
+
+  }
+
+   }
+});
+
+}
+
 
         // if user is found and password is right
         // create a token with only our given payload
     // we don't want to pass in the entire user since that has the password
-    const payload = {
+ /*   const payload = {
       admin: user.admin 
     };
         const token = jwt.sign(payload, app.get('secret'), {
@@ -59,3 +68,4 @@ const hash = bcrypt.hashSync(password, saltRounds);
   });
 }
   }
+*/
