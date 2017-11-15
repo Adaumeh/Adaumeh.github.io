@@ -14,7 +14,7 @@ const bcrypt = require('bcrypt');
 const app = express();
 // Log requests to the console.
 const http = require('http');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const server = http.createServer(app);
 server.listen(port);
 var Console = console;
