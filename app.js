@@ -1,3 +1,7 @@
+
+
+
+
 const express = require('express');
 const logger = require('morgan');
 const jwt = require('jsonwebtoken');
@@ -9,6 +13,12 @@ const bcrypt = require('bcrypt');
 // Set up the express app
 const app = express();
 // Log requests to the console.
+const http = require('http');
+const port = process.env.PORT || 3000;
+const server = http.createServer(app);
+server.listen(port);
+var Console = console;
+Console.log('sever up and running' + " " + port);
 
 app.set('superSecret', secret)
 app.use(logger('dev'));
