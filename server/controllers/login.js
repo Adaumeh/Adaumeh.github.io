@@ -33,22 +33,19 @@ const hash = bcrypt.hashSync(password, saltRounds);
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
      if (user.username) {
-       const payload = {
-      admin: user.admin 
-    };
-        const token = jwt.sign(payload, app.get('secret'), {
-          expiresInMinutes: 1440 // expires in 24 hours
-        });
+        const token = jwt.sign({data:user}, 'secret',{expiresIn: 8640});
 
         // return the information including token as JSON
         res.json({
           success: true,
           message: 'Enjoy your token!',
           token: token
-        });  
-       }
+        });
+
+        // return the information including token as JSON
 
      }
+   }
    })
 
   }
