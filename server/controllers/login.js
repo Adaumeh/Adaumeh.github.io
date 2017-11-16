@@ -2,10 +2,11 @@
 
 
 // Method to sign in a user
+const express = require('express');
 const user = require('../models').users;
 const login = require('../../app');
 const bcrypt = require('bcrypt');
-
+const app = express();
 const saltRounds = 10;
 
 const salt = bcrypt.genSaltSync(saltRounds);
@@ -49,6 +50,6 @@ const hash = bcrypt.hashSync(password, saltRounds);
 
      }
    })
-    
+
   }
 }
