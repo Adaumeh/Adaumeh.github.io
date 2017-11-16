@@ -1,6 +1,6 @@
 
-const express = require('express');
-const app = express();
+
+
 // Method to sign in a user
 const user = require('../models').users;
 const login = require('../../app');
@@ -31,25 +31,8 @@ const hash = bcrypt.hashSync(password, saltRounds);
     if (!user) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
-
-      // check if password matches
-       if (user.comparePassword(req.body.password)){
-        res.json({ success: false, message: 'wrong password.' });
-      } else {
-        return res.json({token:jwt.sign({email:user.email,username:user.username,'RESTFULAPIs'})});
-
-  }
-
-   }
-});
-
-}
-
-
-        // if user is found and password is right
-        // create a token with only our given payload
-    // we don't want to pass in the entire user since that has the password
- /*   const payload = {
+     if (user.username) {
+       const payload = {
       admin: user.admin 
     };
         const token = jwt.sign(payload, app.get('secret'), {
@@ -61,11 +44,11 @@ const hash = bcrypt.hashSync(password, saltRounds);
           success: true,
           message: 'Enjoy your token!',
           token: token
-        });
-      }   
-}
+        });  
+       }
 
-  });
-}
+     }
+   })
+    
   }
-*/
+}
