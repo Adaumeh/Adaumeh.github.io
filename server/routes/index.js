@@ -11,8 +11,8 @@ const getfavourite= require('../controllers/getfavourite')
 const reviews = require('../controllers/reviews');
 const acceptborrow = require('../controllers/acceptborrow');
 const acceptreturn = require('../controllers/acceptreturn');
-
-
+const jwt = require("jsonwebtoken"); 
+const secret = "drtguug8*werty+uifghyu";
 module.exports = (app) => {
 	
   app.get('/api', (req, res) => res.status(200).send({
