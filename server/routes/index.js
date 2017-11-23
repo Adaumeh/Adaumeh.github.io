@@ -15,7 +15,7 @@ const acceptreturn = require('../controllers/acceptreturn');
 const jwt = require("jsonwebtoken"); 
 const secret = "drtguug8*werty+uifghyu";
 const session = require('express-session');
-
+const readinglist = require('../controllers/readinglist');
 
 
 
@@ -72,6 +72,7 @@ module.exports = (app) => {
    app.post('/api/v1/users/:userId/review/:bookId', reviews.create);
    app.put('/api/v1/users/:userId/borrow/:bookId', acceptborrow.create);
    app.put('/api/v1/users/:userId/return/:bookId', acceptreturn.create);
+   app.post('/api/v1/users/readinglist',readinglist.create);
 
  }
 
