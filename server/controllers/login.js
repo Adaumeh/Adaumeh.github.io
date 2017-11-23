@@ -17,6 +17,7 @@ const secret = "drtguug8*werty+uifghyu"
 const password = 's0/\/\P4$$w0rD';
 const confirmpassword = 's0/\/\P4$$w0rD';
 const hash = bcrypt.hashSync(password, saltRounds);
+const session = require('express-session');
 
 //const login = require('../controllers/user');
   module.exports = {
@@ -34,7 +35,7 @@ const hash = bcrypt.hashSync(password, saltRounds);
     } else if (user) {
      if (user.username) {
         const token = jwt.sign({data:user}, 'secret',{expiresIn: 8640});
-
+         req.session.users = token;
         // return the information including token as JSON
         res.json({
           success: true,

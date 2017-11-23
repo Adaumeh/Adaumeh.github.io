@@ -26,6 +26,12 @@ module.exports = (app) => {
   }));
   app.post('/api/v1/users/signup', users.create);
   app.post('/api/v1/users/signin', login.findUser);
+  const auth = function(req, res) {
+  if (req.session)
+    req.session.destroy();
+  else
+    return res.sendStatus(401);
+};
   app.get('/api/users/logout', logout.deleteUser );
 
   app.use(function(req, res, next) {
