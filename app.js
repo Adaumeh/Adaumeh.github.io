@@ -11,7 +11,10 @@ const Sequelize = require('sequelize');
 const app = express();
 // Log requests to the console.
 const http = require('http');
-//const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
+if (process.env.NODE_ENV !== 'production') {
+require('dotenv').config()
+}
 //const server = http.createServer(app);
 //var Console = console;
 //
