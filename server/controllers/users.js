@@ -19,15 +19,19 @@ let router = express.Router();
 module.exports = {
   create(req, res) {
     if(!req.body.username ){
+        res.status(400),
         res.json({message:"enter username"})
       }
       else if (!req.body.email ){
+        res.status(400),
         res.json({message:"enter your email"})
       }
       else if (!req.body.password){
+        res.status(400),
         res.json({message:"enter password"})
       }
       else if (!req.body.role){
+        res.status(400),
         res.json({message:"enter role"})
       }
       
@@ -40,10 +44,10 @@ module.exports = {
         email: req.body.email,
         role: req.body.role
       })
-      
       .then(usercontroller=> res.status(200).send(usercontroller))
-      .catch(error => res.status(400).send(error));
+      
+      .catch(error => res.status(400).send(error))};
     }
 }
-  };
+  
 

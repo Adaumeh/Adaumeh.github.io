@@ -7,11 +7,17 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const Sequelize = require('sequelize');
+const deleteuser = require('./server/controllers/deleteuser');
+const deletebooks = require('./server/controllers/deleteuser')
+
+//let routes  = require('./server/routes/index');
+let config = require('./server/config/config');
 // Set up the express app
 const app = express();
+//const routes = require('../server/routes')
 // Log requests to the console.
 const http = require('http');
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 if (process.env.NODE_ENV !== 'production') {
 require('dotenv').config()
 }
@@ -30,9 +36,11 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // Setup a default catch-all route that sends back a welcome message in JSON format.
+
 require('./server/routes')(app);
 app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome to the beginning of nothingness.',
 }));
-
+app.delete('/api/v1/users', deleteuser.deleteAll);
+app.delete('/api/v1/books', deletebooks.deleteAll);
 module.exports = app;

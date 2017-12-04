@@ -5,7 +5,7 @@ const  express = require ('express');
 let router = express.Router();
 
 module.exports = {
-  router.post('/api/v1/users', users.create) =>{
-       res.status(201).json({success:true});
+  router.post('/api/v1/users/signup', users.create) =>{
+       res.status(200).json({success:true});
        });
       }

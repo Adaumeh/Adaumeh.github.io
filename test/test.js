@@ -1,236 +1,265 @@
-  const expect = require('chai').expect;
-  const chai = require('chai-http');
- const should = require('should'); 
- const  assert = require('assert');
- const app = require('../app.js');
- const request = require('supertest');  
- const sequelize = require('sequelize');
-//var winston = require('winston');
-//const users = require('../server/controllers/users');
-const users = require('../server/models/users');
-const config = require('../server/config/config.json');
+const chai = require('chai');
+const request = require('supertest');
+const chaiHttp = require('chai-http');
+const app = require('../app');
+const should = require('should');
+const {users} = require('../server/models/users');
+const server = require('../bin/www');
+const expect = require('expect');
+const {books} = require('../server/models/books')
 
 
-  // within before() you can run all the operations that are needed to setup your tests. In this case
-  // I want to create a connection with the database, and when I'm done, I call done().
- 
-  // use describe to give a title to your test suite, in this case the tile is "Account"
-  // and then specify a function in which we are going to declare all the tests
-  // we want to run. Each test starts with the function it() and as a first argument 
-  // we have to provide a meaningful title for it, whereas as the second argument we
-  // specify a function that takes a single parameter, "done", that we will use 
-  // to specify when our test is completed, and that's what makes easy
-  // to perform async test!
-  describe('Api api/v1/users/signup', function() {
-     before(function(done) {
-    // In our tests we use the test db                            
-    done();
-  });
-    it('should return error trying to save duplicate username', function(done) {
-      const profile = {
-        username: 'ada',
-        password: 'test',
-        email: 'umeononihuadaobi@gmail.com',
-        role: 'user'
-      };
-    // once we have specified the info we want to send to the server via POST verb,
-    // we need to actually perform the action on the resource, in this case we want to 
-    // POST on /api/profiles and we want to send some info
-    // We do this using the request object, requiring supertest!
-    request(app)
+chai.use(chaiHttp);  
+
+
+describe('User controller', function() {
+  beforeEach((done) => {
+  request(app).delete('/api/v1/users');
+  done();
+});
+ it('should insert the user details into the database', function(done) {
+  chai.request(app)
     .post('/api/v1/users/signup')
-    .send(profile)
-    // end handles the response
-    .end(function(err, res) {
-          if (err) {
-            throw err;
-          }
-          // this is should.js syntax, very clear
-           expect(200);
-          done(err);
-        });
-    });
-    it('should correctly return user details', function(done){
-    const body = {
-       username: 'Adaeze',
+    .send({
+        username: 'Adaeze',
         password: 'test',
         email: 'adaobi@gmail.com',
         role: 'user'
-    };
-    request(app)
-        .post('/api/v1/users/signup')
-        .send(body)
-        .expect(200) //Status code
-        .end(function(err,res) {
-            if (err) {
-                throw err;
-            }
-            // Should.js fluent syntax applied
-        expect(err).to.have.status(404);
-        expect(res).to.have.status(200);
-        expect(res).to.be.json;
-        expect(res.body).to.be.an('object');
-        expect(res.body.results).to.be.an('array');
-        expect(res.body.results).to.have.property('_id');
-        expect(res.body.username).to.be.equal('Adaeze');
-        expect(res.body.password).to.be.equal('test'); 
-        expect(res.body.email).to.be.equal('adaobi@gmail.com'); 
-        expect(res.body.role).to.be.equal('user');                    
-            done(err);
-        });
+    })
+    .end(function(err, res){
+      expect(200);
+      expect('json');
+      expect('array');
+      expect('username:Adaeze')
+      expect('password:test')
+      done();
+
     });
-  });
-/*const expect = require('chai').expect;
- //const users = require('../server/models/users');
-const sequelize = require('sequelize');
-chai.use(require('chai-http'));
-const app = require('../app.js'); // Our app
- //const should = require('should-promised');
+ });
 
-
-describe('API endpoint api/v1/users/signup', function(done){  
-  this.timeout(50000); // How long to wait for a response (ms)
- //let timeout = null;
-  before(function(done) {
-   const  users = require('../server/models/users');
-  
-   done()
-  });
- 
-  after(function(done) {
-    done();
-  
- 
- return new Promise((resolve, reject) => {
-    
-  }) 
-   });
-
- 
-  // POST - user details
-  it('should return the user details', function(done){
-     return new Promise((resolve, reject) => {
-  })
-    return chai.request(app)
-
-      .post('/api/v1/users/signup')
-      .send({
-          username: 'name',
-          password: 'password',
-          email:'ada@yahoo.com',
-          role:'user'
-         
-        })
-      .then(function(res) {
-        setTimeout(function() {
-          throw new Error('Not found');
-      })
-      .catch(function(err) {
-        expect(err).to.have.status(404);
-        expect(res).to.have.status(200);
-        expect(res).to.be.json;
-        expect(res.body).to.be.an('object');
-        expect(res.body.results).to.be.an('array');
-        done();
+ it('should return error when saving a duplicate email', function(done) {
+  chai.request(app)
+    .post('/api/v1/users/signup')
+    .send({
+        username: 'Adaeze',
+        password: 'test',
+        email: 'adaobi@gmail.com',
+        role: 'user'
+    })
+    .end(function(err, res){
+      expect(400)
+      expect('json');
+      expect('array');
+      done();
+    });
 });
-      });
-  });
+
+ it('should throw error when parameters are missing', function(done) {
+  chai.request(app)
+    .post('/api/v1/users/signup')
+    .send({
+        username: 'Adaeze',
+        role: 'user'
+    })
+    .end(function(err, res){
+      expect(400)
+      expect('json');
+      expect('array');
+      done();
+    });
+});
+});
+describe('User controller', function() {
+  beforeEach((done) => {
+  request(app).delete('/api/v1/users');
+  done();
+});
  
-  // POST - Invalid path
-  it('should return Not Found', function(done) {
-     return new Promise((resolve, reject) => {
-  })
-    return chai.request(app)
-      .post('/api/v1/INVALID_PATH')
-      .then(function(res) {
-        setTimeout(function() {
-        throw new Error('Not found');
-      })
-      .catch(function(err) {
-        expect(err).to.have.status(404);
-        done();
+  it('should throw error when parameters are missing', function(done) {
+  chai.request(app)
+    .post('/api/v1/users/signin')
+    .send({
+    })
+    .end(function(err, res){
+      expect(400)
+      expect('json');
+      expect('array');
+      done();
+    });
+})
+  it('should throw error when email does not exist', function(done) {
+  chai.request(app)
+    .post('/api/v1/users/signin')
+    .send({
+        email: 'ad@gmail.com'
+    })
+    .end(function(err, res){
+      expect(400)
+      expect('json');
+      expect('array');
+      done();
+    });
+})
+  it('should insert the user signin details into the database', function(done) {
+  chai.request(app)
+    .post('/api/v1/users/signin')
+    .send({
+        email: 'adaobi@gmail.com'
+    })
+    .end(function(err, res){
+      expect(200);
+      expect('json');
+      expect('array');
+      expect('email:adaobi@gmail.com')
+      expect('token:token')
+      done();
+
+    })
+ });
+});
+  describe('Book controller', function() {
+  beforeEach((done) => {
+  request(app).delete('/api/v1/books');
+  done();
+});
+ it('should insert the book details into the database', function(done) {
+  chai.request(app)
+    .post('/api/v1/books')
+    .send({
+        title: 'The Innocent ',
+        author: 'John Greshawn',
+        category: 'fiction',
+        year: '2003',
+        isbn:'cd209vc',
+        registeredby:'Ify',
+        status:'borrowed',
+        quantity:7,
+        bookId: 7,
+        token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJ1c2VybmFtZSI6ImFkYW9iaSIsInBhc3N3b3JkIjoiJDJhJDEwJEsxVDdZZlFmQmRpcmgwaFE5SkFIbC5ySHpSZDBwSVFBWGI3RUI3cmtaNEFnLjhZOTVRL2d5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIiwiZW1haWwiOiJ1bWVvbm9uaWh1YWRhb2JpQGdtYWlsLmNvbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiJ9LCJpYXQiOjE1MTIyMTgyMDEsImV4cCI6MTUxMjIyNjg0MX0.-151L8Df3Du8vf3y8QDNhhkzJYCOM1VI3hWla4i2alk'
+     })  
+    .end(function(err, res){
+      expect(200);
+      expect('json');
+      expect('array');
+      expect('title:Lord of the flies')
+      expect('status:borrowed')
+      done();
+
+    });
+ });
+  it('should return 400 bad request error when a parameter is missing', function(done) {
+  chai.request(app)
+    .post('/api/v1/books')
+    .send({
+        title: 'Lord of the flies',
+        category: 'fiction',
+        year: '2003',
+        isbn:'cd24356',
+        registeredby:'Ify',
+        status:'borrowed',
+        quantity:12,
+       token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJ1c2VybmFtZSI6ImFkYW9iaSIsInBhc3N3b3JkIjoiJDJhJDEwJEsxVDdZZlFmQmRpcmgwaFE5SkFIbC5ySHpSZDBwSVFBWGI3RUI3cmtaNEFnLjhZOTVRL2d5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIiwiZW1haWwiOiJ1bWVvbm9uaWh1YWRhb2JpQGdtYWlsLmNvbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiJ9LCJpYXQiOjE1MTIyMTgyMDEsImV4cCI6MTUxMjIyNjg0MX0.-151L8Df3Du8vf3y8QDNhhkzJYCOM1VI3hWla4i2alk'
       
-      });
-  });
- 
-  // POST - Login
-  
- 
-  // POST - Bad Request
-  it('should return Bad Request',function(done) {
-     return new Promise((resolve, reject) => {
-  })
-    return chai.request(app)
-      .post('/api/v1/users/signup')
-  
-      .send({
-        phone: 080654328
-      })
-      .then(function(res) {
-        setTimeout(function() {
-        throw new Error('sequelize database errror fields cannot be null');
-      })
-      .catch(function(err) {
-        expect(err).to.have.status(400); 
-        done();
-      });
-      });
-  });
+    })
+    .end(function(err, res){
+      expect(400);
+      //expect('json');
+      //expect('array');
+     // expect('year:2003')
+      //expect('title:Lord of the flies')
+      done();
+
+    });
+ });
+it('should return 403 unauthorized error when a token is missing', function(done) {
+  chai.request(app)
+    .post('/api/v1/books')
+    .send({
+         title: 'Lord of the flies',
+        author: 'J.K Tolken',
+        category: 'fiction',
+        year: '2003',
+        isbn:'cd24356',
+        registeredby:'Ify',
+        status:'borrowed',
+        quantity:12,
+        bookId: 1
+       //token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJ1c2VybmFtZSI6ImFkYW9iaSIsInBhc3N3b3JkIjoiJDJhJDEwJEsxVDdZZlFmQmRpcmgwaFE5SkFIbC5ySHpSZDBwSVFBWGI3RUI3cmtaNEFnLjhZOTVRL2d5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIiwiZW1haWwiOiJ1bWVvbm9uaWh1YWRhb2JpQGdtYWlsLmNvbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiJ9LCJpYXQiOjE1MTIyMTc0MDcsImV4cCI6MTUxMjIyNjA0N30.ZsGPdrQ4NN3mJCLbSDgBSHkRFD8uUVhG4aFaUAWL3BE'
+   
+      
+    })
+    .end(function(err, res){
+      expect(403);
+      expect({message:'no token provided'});
+      //expect('array');
+     // expect('year:2003')
+      //expect('title:Lord of the flies')
+      done();
+
+    });
+ });
+it('should return 200 ok when a get request is  made ', function(done) {
+  chai.request(app)
+    .get('/api/v1/books')
+    .send({  
+       Authorization:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJ1c2VybmFtZSI6ImFkYW9iaSIsInBhc3N3b3JkIjoiJDJhJDEwJEsxVDdZZlFmQmRpcmgwaFE5SkFIbC5ySHpSZDBwSVFBWGI3RUI3cmtaNEFnLjhZOTVRL2d5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIiwiZW1haWwiOiJ1bWVvbm9uaWh1YWRhb2JpQGdtYWlsLmNvbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiJ9LCJpYXQiOjE1MTIyMTgyMDEsImV4cCI6MTUxMjIyNjg0MX0.-151L8Df3Du8vf3y8QDNhhkzJYCOM1VI3hWla4i2alk'  
+    })
+    .end(function(err, res){
+      expect(200);
+      expect('json');
+      //expect('array');
+     // expect('year:2003')
+      //expect('title:Lord of the flies')
+      done();
+
+    });
+ });
+it('should return error when saving a duplicate book details', function(done) {
+  chai.request(app)
+    .post('/api/v1/books')
+    .send({
+        title: 'Lord o',
+        author: 'J.K Tolken',
+        category: 'fiction',
+        year: '2003',
+        isbn:'cd24356676',
+        registeredby:'Ify',
+        status:'borrowed',
+        quantity:12,
+        bookId: 2,
+        token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJ1c2VybmFtZSI6ImFkYW9iaSIsInBhc3N3b3JkIjoiJDJhJDEwJEsxVDdZZlFmQmRpcmgwaFE5SkFIbC5ySHpSZDBwSVFBWGI3RUI3cmtaNEFnLjhZOTVRL2d5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIiwiZW1haWwiOiJ1bWVvbm9uaWh1YWRhb2JpQGdtYWlsLmNvbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiJ9LCJpYXQiOjE1MTIyMTgyMDEsImV4cCI6MTUxMjIyNjg0MX0.-151L8Df3Du8vf3y8QDNhhkzJYCOM1VI3hWla4i2alk'
+    })
+    .end(function(err, res){
+      expect(400)
+      //expect('json');
+      //expect('array');
+      done();
+    });
 });
-describe('API endpoint  /api/v1/users/signin', function(done)  {  
-  this.timeout(50000) ; // How long to wait for a response (ms)
- 
-  before(function(done) {
-    const users = require('../server/models/users');
- 
-  });
- 
-  after(function(done) {
-    done();
- 
-  });
-
-  it('should return Not found ',function(done)  {
-     return new Promise((resolve, reject) => {
-
-  })
-    return chai.request(app)
-      .post('/api/v1/users/signin')
-  
-      .send({
-        password: 'haser'
-      })
-      .then(function(res) {
-        setTimeout(function() {
-        throw new Error('Invalid content type!');
-      })
-      .catch(function(err) {
-        expect(err).to.have.status(404);
-        done();
-      });
-      });
-
-  });
+it('should return error code when an invalid token is provided', function(done) {
+  chai.request(app)
+    .post('/api/v1/books')
+    .send({
+        title: 'Lord o',
+        author: 'J.K Tolken',
+        category: 'fiction',
+        year: '2003',
+        isbn:'cd24356676',
+        registeredby:'Ify',
+        status:'borrowed',
+        quantity:12,
+        bookId: 2,
+        token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJ1c2VybmFtZSI6ImFkYW9iaSIsInBhc3N3b3JkIjoiJDJhJDEwJEsxVDdZZlFmQmRpcmgwaFE5SkFIbC5ySHpSZDBwSVFBWGI3RUI3cmtaNEFnLjhZOTVRL2d5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIiwiZW1haWwiOiJ1bWVvbm9uaWh1YWRhb2JpQGdtYWlsLmNvbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiJ9LCJpYXQiOjE1MTIyMTgyMDEsImV4cCI6MTUxMjIyNjg0MX0.-151L8Df3Du8vf3y8QDNhhkzJYCOM1VI3hWla4i2alk'
+    })
+    .end(function(err, res){
+      expect(400)
+      expect({message:'failed to authenticate token'});
+      //expect('array');
+      done();
+    });
 });
-  it('should successfully login the user and return a token', function(done){
-     return new Promise((resolve, reject) => {
-  })
-    return chai.request(app)
-      .post('/api/v1/users/signin')
-      .send({
-        email:'umeononihuadaobi@gmail.com' 
-      })
-      .then(function(res) {
-        setTimeout(function() {
-        expect(res).to.have.status(200);
-        expect(res).to.be.json;
-        expect(res.body).to.be.an('object');
-        expect(res.body.results).to.be.an('array').that.includes(
-          token);
-        done();
-      });
-      });
-      });
-  });*/
+});
+
+
 
 

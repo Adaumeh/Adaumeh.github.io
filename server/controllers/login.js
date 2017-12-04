@@ -31,6 +31,7 @@ const session = require('express-session');
     .then((user, err) => {
       if (err) throw err;
     if (!user) {
+      res.status(400),
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
      if (user.username) {

@@ -1,5 +1,6 @@
 
 const addbooks = require('../controllers/addbooks');
+const books = require('../controllers/addbooks');
 const getbooks = require('../controllers/getbooks');
 const putbooks = require('../controllers/putbooks');
 const borrow = require('../controllers/borrow');
@@ -35,8 +36,14 @@ module.exports = (app) => {
   app.get('/api/users/logout', logout.deleteUser );
 
   app.use(function(req, res, next) {
+     if(users.email){
+        res.status(401),
+        res.json({message: "email already exist"})
+      }
+      
    //const authorizationHeader = req.headers['Authorization'];
    const token = req.body.token || req.params.token || req.headers['authorization'];
+  
   // decode token
   if (token) {
     // verifies secret and checks exp
@@ -57,13 +64,18 @@ module.exports = (app) => {
     });
 
   }
-})
+
   
-  app.post('/api/v1/books', addbooks.create);
-  app.put('/api/v1/books/:bookId', putbooks.update);
   
- 
+   })
+
+       app.post('/api/v1/books', addbooks.create); 
+      
+
+  
  app.get('/api/v1/books', getbooks.list);
+
+  app.put('/api/v1/books/:bookId', putbooks.update);
  
   app.post('/api/v1/users/:userId/borrow/:bookId', borrow.create);
    app.post('/api/v1/users/:userId/return/:bookId', returnbooks.create);
@@ -73,6 +85,7 @@ module.exports = (app) => {
    app.put('/api/v1/users/:userId/borrow/:bookId', acceptborrow.create);
    app.put('/api/v1/users/:userId/return/:bookId', acceptreturn.create);
    app.post('/api/v1/users/readinglist',readinglist.create);
+     
 
  }
 

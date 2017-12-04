@@ -4,15 +4,38 @@ const books = require('../models').books;
 module.exports = {
   create(req, res) {
     if(!req.body.title ){
+      res.status(400),
         res.json({message:"enter the message title"})
       }
       else if (!req.body.author ){
+        res.status(400),
         res.json({message:"enter the name of the author"})
       }
       else if (!req.body.category){
+        res.status(400),
         res.json({message:"enter category"})
       }
+      else if (!req.body.isbn){
+        res.status(400),
+        res.json({message:"enter isbn"})
+      }
+      else if (!req.body.bookId){
+        res.status(400),
+        res.json({message:"enter book id"})
+      }
+      else if (!req.body.quantity){
+        res.status(400),
+        res.json({message:"enter quantity"})
+      }else if (!req.body.registeredby){
+        res.status(400),
+        res.json({message:"enter registered by who"})
+      }else if (!req.body.year){
+        res.status(400),
+        res.json({message:"year"})
+      }
+
       else
+
       { 
     return books
       .create({
@@ -26,7 +49,7 @@ module.exports = {
         quantity:req.body.quantity,
         isbn:req.body.isbn
       })
-      
+
       .then(books => res.status(200).send(books))
       .catch(error => res.status(400).send(error));
     }

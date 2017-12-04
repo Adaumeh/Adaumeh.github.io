@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.CHAR,
       allowNull: true,
+      isUnique:true,
+      isEmail:true
     },
     role: {
       type: DataTypes.ENUM,

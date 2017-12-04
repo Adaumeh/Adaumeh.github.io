@@ -1,12 +1,12 @@
 
 const http = require('http');
-const app = require('../app'); // The express app we just created
+const app = require('../app');
+//const server = require('../app')
 
-//const port = parseInt(process.env.PORT, 10) || 8000;
-app.set('port', ( process.env.PORT || 3000 ));
+const port = +process.env.PORT || 8000;
+app.set('port', port);
 
-const server = http.createServer(app);
-server.listen( app.get( 'port' ), function() {
-  console.log( 'Node server is running on port ' + app.get( 'port' ));
-  });
-//server.listen(port);
+http.createServer(app).listen(port, () => {
+  console.log(`The server is listening on port ${port}`);
+});
+//module.exports = server
