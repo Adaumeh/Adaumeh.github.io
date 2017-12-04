@@ -9,13 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        isUnique:true
       },
       password: {
         type: Sequelize.CHAR
       },
       email: {
-        type: Sequelize.CHAR
+        type: Sequelize.CHAR,
+        isUnique:true,
+        isEmail:true
       },
       role: {
         type: Sequelize.ENUM,
