@@ -134,7 +134,7 @@ describe('User controller', function() {
         registeredby:'Ify',
         status:'borrowed',
         quantity:7,
-        bookId: 7,
+        bookId: 8,
         token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJ1c2VybmFtZSI6ImFkYW9iaSIsInBhc3N3b3JkIjoiJDJhJDEwJEsxVDdZZlFmQmRpcmgwaFE5SkFIbC5ySHpSZDBwSVFBWGI3RUI3cmtaNEFnLjhZOTVRL2d5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIiwiZW1haWwiOiJ1bWVvbm9uaWh1YWRhb2JpQGdtYWlsLmNvbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiJ9LCJpYXQiOjE1MTIyMTgyMDEsImV4cCI6MTUxMjIyNjg0MX0.-151L8Df3Du8vf3y8QDNhhkzJYCOM1VI3hWla4i2alk'
      })  
     .end(function(err, res){
@@ -204,15 +204,19 @@ it('should return 200 ok when a get request is  made ', function(done) {
     .send({  
        Authorization:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJ1c2VybmFtZSI6ImFkYW9iaSIsInBhc3N3b3JkIjoiJDJhJDEwJEsxVDdZZlFmQmRpcmgwaFE5SkFIbC5ySHpSZDBwSVFBWGI3RUI3cmtaNEFnLjhZOTVRL2d5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIiwiZW1haWwiOiJ1bWVvbm9uaWh1YWRhb2JpQGdtYWlsLmNvbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMjlUMDg6MDk6MjIuODA3WiJ9LCJpYXQiOjE1MTIyMTgyMDEsImV4cCI6MTUxMjIyNjg0MX0.-151L8Df3Du8vf3y8QDNhhkzJYCOM1VI3hWla4i2alk'  
     })
-    .end(function(err, res){
-      expect(200);
-      expect('json');
+    //.end(function(err, res){
+      
+      //.expect('json');
       //expect('array');
      // expect('year:2003')
       //expect('title:Lord of the flies')
+    .end(function(err, res){
+      expect(200);
+    //if (err) return done(err);
+    // console.log(err, res);
       done();
 
-    });
+    //});
  });
 it('should return error when saving a duplicate book details', function(done) {
   chai.request(app)
@@ -259,7 +263,7 @@ it('should return error code when an invalid token is provided', function(done) 
     });
 });
 });
-
+});
 
 
 
